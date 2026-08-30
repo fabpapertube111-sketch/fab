@@ -65,7 +65,7 @@ const productOptions = [
 ];
 
 const quantityOptions = [
-  '0.5 Ton (Minimum Order)',
+  '0.5 Ton',
   '1 Ton',
   '2 Ton',
   '3 Ton',
@@ -75,9 +75,9 @@ const quantityOptions = [
   '20 Ton',
   '25 Ton',
   '50 Ton',
-  '100 Ton (Bulk Order)',
+  '100 Ton',
   'More than 100 Ton',
-  'Custom Quantity — Contact Us',
+  'Custom Quantity',
 ];
 
 function validate(data: FormData): FormErrors {
@@ -405,7 +405,7 @@ export default function ContactPageClient() {
                             htmlFor="quantity"
                             className="block text-xs font-semibold text-[#4a4a4a] uppercase tracking-wider mb-1.5"
                           >
-                            Quantity (Approx.)
+                            Quantity
                           </label>
                           <select
                             id="quantity"

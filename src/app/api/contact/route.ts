@@ -36,8 +36,10 @@ export async function POST(req: NextRequest) {
     fd.append('your-phone',       body.phone.trim());
     fd.append('your-email',       body.email?.trim() ?? '');
     fd.append('product-type',     body.product?.trim() ?? '');
-    // Send quantity as the full human-readable label (CF7 text field, not number)
-    fd.append('quantity',         body.quantity?.trim() ?? '');
+    // CF7 quantity field is type="number" — extract the first number from strings like "5 Ton", "0.5 Ton (Minimum Order)"
+    const rawQty = body.quantity?.trim() ?? '';
+    const numericQty = rawQty.match(/\d+(\.\d+)?/)?.[0] ?? '';
+    fd.append('quantity',         numericQty);
     fd.append('your-requirement', body.message.trim());
     // CF7 unit tag — p1 is a safe generic value; p0 causes validation failures on some CF7 builds
     fd.append('_wpcf7_unit_tag',  `wpcf7-f${formId}-p1-o1`);

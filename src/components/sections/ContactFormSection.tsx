@@ -19,7 +19,7 @@ const productOptions = [
 ];
 
 const quantityOptions = [
-  '0.5 Ton (Minimum Order)',
+  '0.5 Ton',
   '1 Ton',
   '2 Ton',
   '3 Ton',
@@ -29,9 +29,9 @@ const quantityOptions = [
   '20 Ton',
   '25 Ton',
   '50 Ton',
-  '100 Ton (Bulk Order)',
+  '100 Ton',
   'More than 100 Ton',
-  'Custom Quantity — Contact Us',
+  'Custom Quantity',
 ];
 
 export default function ContactFormSection() {
@@ -205,7 +205,7 @@ export default function ContactFormSection() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-[#4a4a4a] mb-1.5">Quantity (Approx.)</label>
+                        <label className="block text-xs font-semibold text-[#4a4a4a] mb-1.5">Quantity</label>
                         <select name="quantity" value={form.quantity} onChange={handleChange} className={inputClass() + ' cursor-pointer'}>
                           <option value="">Select quantity</option>
                           {quantityOptions.map(o => <option key={o} value={o}>{o}</option>)}
