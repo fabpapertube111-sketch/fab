@@ -56,16 +56,14 @@ const productOptions = [
   'White Sewing Thread Paper Tube',
   'Brown Notebook Cover Paper Tube',
   'Birthday Cake Sparkle Candle Tube',
-  'Selfie Stick Pencil Crackers Tube',
+  'Selfie Stick Pencil Crackers',
   'Butterfly Firecracker Tube',
   'Thermal Roll Paper Tube',
   'Mirchi Bomb Paper Tube',
   'Stretch Film Roll Paper Tube',
-  'Custom / Other Requirement',
 ];
 
 const quantityOptions = [
-  '0.5 Ton',
   '1 Ton',
   '2 Ton',
   '3 Ton',
