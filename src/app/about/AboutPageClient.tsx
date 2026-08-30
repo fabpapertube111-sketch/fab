@@ -243,7 +243,7 @@ export default function AboutPageClient() {
               const Icon = step.icon;
               return (
                 <motion.div
-                  key={step.number}
+                  key={step.}
                   variants={fadeUp}
                   custom={i}
                   className="proc-card flex items-start gap-5 p-6 rounded-xl bg-white cursor-default"
