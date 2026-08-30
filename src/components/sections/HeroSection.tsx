@@ -110,31 +110,31 @@ export default function HeroSection() {
             {/* CTA buttons */}
             <motion.div
               variants={heroButtons}
-              className="flex flex-row gap-3 justify-center lg:justify-start w-full"
+              className="flex flex-row gap-3 justify-center lg:justify-start"
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300 flex-1 lg:flex-initial"
+                className="group inline-flex items-center justify-center gap-1.5 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300 whitespace-nowrap"
                 style={{
                   border: '2px solid rgba(255,255,255,0.9)',
-                  fontSize: '15px',
-                  padding: '12px 20px',
+                  fontSize: '13px',
+                  padding: '9px 16px',
                 }}
               >
                 Get Free Quote
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link
                 href="/products"
-                className="group inline-flex items-center justify-center gap-2 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300 flex-1 lg:flex-initial"
+                className="group inline-flex items-center justify-center gap-1.5 bg-transparent text-white font-bold rounded-sm hover:bg-white hover:text-[#1a3bc1] transition-all duration-300 whitespace-nowrap"
                 style={{
                   border: '2px solid rgba(255,255,255,0.9)',
-                  fontSize: '15px',
-                  padding: '12px 20px',
+                  fontSize: '13px',
+                  padding: '9px 16px',
                 }}
               >
                 View Products
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </motion.div>
           </motion.div>
@@ -175,72 +175,6 @@ export default function HeroSection() {
                   filter: 'drop-shadow(0 24px 48px rgba(0,60,200,0.4))',
                 }}
               />
-
-              {/* Badge — 10+ Years */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.0, type: 'spring', stiffness: 220 }}
-                className="absolute bg-white rounded-xl shadow-2xl flex items-center z-20"
-                style={{
-                  top: '8px',
-                  left: '4px',
-                  gap: '8px',
-                  padding: '7px 12px',
-                  maxWidth: '44%',
-                }}
-              >
-                <div
-                  className="flex-shrink-0 flex items-center justify-center rounded-full text-white font-black"
-                  style={{
-                    width: '36px',
-                    height: '36px',
-                    minWidth: '36px',
-                    fontSize: '11px',
-                    background: 'linear-gradient(135deg,#f5be20,#c88010)',
-                  }}
-                >
-                  10+
-                </div>
-                <div>
-                  <div style={{ fontSize: '12px', fontWeight: 900, color: '#0d2080', lineHeight: 1.2 }}>
-                    Years
-                  </div>
-                  <div style={{ fontSize: '10px', color: '#888', lineHeight: 1.2 }}>
-                    Manufacturing
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Badge — ISO Quality */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.35, type: 'spring', stiffness: 220 }}
-                className="absolute bg-white rounded-xl shadow-2xl flex items-center z-20"
-                style={{
-                  bottom: '60px',
-                  right: '4px',
-                  gap: '8px',
-                  padding: '7px 12px',
-                  maxWidth: '48%',
-                }}
-              >
-                <div
-                  className="flex-shrink-0 flex items-center justify-center rounded-full text-white font-black"
-                  style={{ width: '36px', height: '36px', minWidth: '36px', fontSize: '16px', background: '#0d2080' }}
-                >
-                  ✓
-                </div>
-                <div>
-                  <div style={{ fontSize: '12px', fontWeight: 900, color: '#0d2080', lineHeight: 1.2 }}>
-                    ISO Quality
-                  </div>
-                  <div style={{ fontSize: '10px', color: '#888', lineHeight: 1.2 }}>
-                    Assured Products
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </motion.div>
 
