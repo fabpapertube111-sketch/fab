@@ -36,7 +36,7 @@ export default function CompanyIntroSection() {
             variants={slideLeft}
             className="relative"
           >
-            <div className="relative">
+    <div className="relative">
               <motion.div
                 style={{ y: imageY }}
                 className="relative z-10 rounded overflow-hidden bg-[#1a1a1a] aspect-[4/5]"

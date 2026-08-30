@@ -27,7 +27,7 @@ export default function SpecialitySection() {
         }}
       />
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 overflow-hidden">
         <motion.div style={{ x: textX }} className="overflow-hidden mb-8">
           <div
             className="text-[10rem] md:text-[14rem] lg:text-[18rem] font-black leading-none select-none whitespace-nowrap text-white/[0.02]"

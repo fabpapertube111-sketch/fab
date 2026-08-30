@@ -144,7 +144,7 @@ export default function HeroSection() {
             variants={heroImage}
             initial="hidden"
             animate="visible"
-            className="relative flex items-center justify-center lg:justify-end"
+            className="relative flex items-center justify-center lg:justify-end overflow-hidden"
           >
             <motion.div
               animate={{ y: [0, -14, 0] }}
@@ -184,7 +184,7 @@ export default function HeroSection() {
                 className="absolute bg-white rounded-xl shadow-2xl flex items-center z-20"
                 style={{
                   top: '32px',
-                  left: '-8px',
+                  left: '0px',
                   gap: '12px',
                   padding: '10px 18px',
                 }}
@@ -218,7 +218,7 @@ export default function HeroSection() {
                 className="absolute bg-white rounded-xl shadow-2xl flex items-center z-20"
                 style={{
                   bottom: '88px',
-                  right: '-8px',
+                  right: '0px',
                   gap: '12px',
                   padding: '10px 18px',
                 }}

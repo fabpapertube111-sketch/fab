@@ -16,7 +16,7 @@ const highlights = [
 
 export default function TrustedManufacturerSection() {
   return (
-    <section className="section-padding" style={{ background: '#f0f5ff' }}>
+    <section className="section-padding overflow-hidden" style={{ background: '#f0f5ff' }}>
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
