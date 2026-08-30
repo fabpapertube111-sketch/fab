@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/* ─── FAB Paper Tube Design System ──────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --color-primary: #1a1a1a;
+  --color-primary-light: #2d2d2d;
+  --color-accent: #c8922a;
+  --color-accent-light: #e0a83b;
+  --color-accent-dark: #a67520;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f4f0;
+  --color-bg-dark: #111111;
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b6b6b;
+  --color-text-light: #9a9a9a;
+  --color-border: #e5e5e5;
+  --color-border-dark: #2a2a2a;
+
+  /* Typography Scale */
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Spacing */
+  --section-padding: 6rem 0;
+  --container-max: 1280px;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+}
+
+/* ─── Base Styles ────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-size: 16px; /* increased base font size */
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ─── Focus Styles ───────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 3px;
+}
+
+/* ─── Prose / WordPress Content ──────────────────────────────────────────────── */
+.wp-content h1,
+.wp-content h2,
+.wp-content h3,
+.wp-content h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+.wp-content p {
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+}
+.wp-content ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.wp-content li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────────────────── */
+.section-padding {
+  padding: 5rem 0;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 7rem 0;
+  }
+}
+
+.container-custom {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-custom {
+    padding: 0 2.5rem;
+  }
+}
+
+/* ─── Noise Texture Overlay ──────────────────────────────────────────────────── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* ─── Gold Gradient Text ─────────────────────────────────────────────────────── */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #c8922a 0%, #e0a83b 50%, #c8922a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Product Card Hover ─────────────────────────────────────────────────────── */
+.product-card:hover .product-image {
+  transform: scale(1.04);
+}
+
+.product-card:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* ─── Line Animation ─────────────────────────────────────────────────────────── */
+.line-animate {
+  position: relative;
+}
+
+.line-animate::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.line-animate:hover::after {
+  width: 100%;
+}
+
+/* ─── Industrial Pattern BG ──────────────────────────────────────────────────── */
+.industrial-pattern {
+  background-image: 
+    linear-gradient(rgba(200, 146, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 146, 42, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
