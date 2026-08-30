@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle2, Phone, Mail, MapPin } from 'lucide-react';
-import { staggerContainer, fadeUp, slideLeft, slideRight, viewportConfig } from '@/lib/animations';
+import { staggerContainer, slideLeft, slideRight, viewportConfig } from '@/lib/animations';
 
 interface FormData {
   name: string; company: string; phone: string; email: string;
@@ -108,15 +108,15 @@ export default function ContactFormSection() {
               variants={slideLeft}
               className="rounded-xl overflow-hidden shadow-xl"
             >
-              {/* Blue left panel + orange divider + white right — matches the business card */}
-              <div className="flex">
-                {/* Left blue panel */}
-                <div className="bg-[#1a4a9e] p-6 flex flex-col justify-center gap-4 flex-shrink-0 w-2/5">
+              {/* On mobile: stack top (blue) + bottom (white). On sm+: side by side */}
+              <div className="flex flex-col sm:flex-row">
+                {/* Blue panel — full width on mobile, fixed width on sm+ */}
+                <div className="bg-[#1a4a9e] p-5 flex flex-col justify-center gap-3 sm:w-2/5 sm:flex-shrink-0">
                   <div>
                     <div className="text-white/70 text-xs mb-0.5">(since 2013)</div>
                     <div className="text-white font-bold text-sm leading-tight">Manufacturing all type of paper tube</div>
                   </div>
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-1.5 flex flex-row flex-wrap gap-x-4 sm:flex-col sm:flex-nowrap sm:gap-x-0">
                     {['Stitching thread Tube', 'Stretch film core', 'Textile Paper Tube'].map(item => (
                       <li key={item} className="text-white text-xs flex items-start gap-1.5">
                         <span className="mt-1 w-1.5 h-1.5 rounded-full bg-white flex-shrink-0"/>
@@ -125,10 +125,10 @@ export default function ContactFormSection() {
                     ))}
                   </ul>
                 </div>
-                {/* Orange divider */}
-                <div className="w-1.5 bg-orange-500 flex-shrink-0"/>
+                {/* Orange divider — horizontal on mobile, vertical on sm+ */}
+                <div className="h-1.5 sm:h-auto sm:w-1.5 bg-orange-500 flex-shrink-0"/>
                 {/* Right white panel */}
-                <div className="bg-white p-5 flex flex-col gap-3.5 flex-1">
+                <div className="bg-white p-5 flex flex-col gap-3.5 flex-1 min-w-0">
                   {[
                     { icon: Phone, label: 'AXIT HIRANI', value: '+ 91 82380 74700', href: 'tel:+918238074700' },
                     { icon: Phone, label: 'MANSHUKH RANPARIYA', value: '+ 91 98796 45030', href: 'tel:+919879645030' },
@@ -137,13 +137,13 @@ export default function ContactFormSection() {
                   ].map((item, i) => {
                     const Icon = item.icon;
                     return (
-                      <a key={i} href={item.href} className="flex items-start gap-2.5 group">
+                      <a key={i} href={item.href} className="flex items-start gap-2.5 group min-w-0">
                         <div className="w-7 h-7 rounded-full border-2 border-[#1a4a9e] flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#1a4a9e] transition-colors">
                           <Icon size={12} className="text-[#1a4a9e] group-hover:text-white transition-colors" />
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           {item.label && <div className="text-[#1a4a9e] font-black text-xs">{item.label}</div>}
-                          <div className="text-[#333] text-xs leading-relaxed">{item.value}</div>
+                          <div className="text-[#333] text-xs leading-relaxed break-words">{item.value}</div>
                         </div>
                       </a>
                     );

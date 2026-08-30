@@ -183,28 +183,30 @@ export default function HeroSection() {
                 transition={{ delay: 1.0, type: 'spring', stiffness: 220 }}
                 className="absolute bg-white rounded-xl shadow-2xl flex items-center z-20"
                 style={{
-                  top: '32px',
-                  left: '0px',
-                  gap: '12px',
-                  padding: '10px 18px',
+                  top: '8px',
+                  left: '4px',
+                  gap: '8px',
+                  padding: '7px 12px',
+                  maxWidth: '44%',
                 }}
               >
                 <div
                   className="flex-shrink-0 flex items-center justify-center rounded-full text-white font-black"
                   style={{
-                    width: '44px',
-                    height: '44px',
-                    fontSize: '13px',
+                    width: '36px',
+                    height: '36px',
+                    minWidth: '36px',
+                    fontSize: '11px',
                     background: 'linear-gradient(135deg,#f5be20,#c88010)',
                   }}
                 >
                   10+
                 </div>
                 <div>
-                  <div style={{ fontSize: '13px', fontWeight: 900, color: '#0d2080', lineHeight: 1.2 }}>
+                  <div style={{ fontSize: '12px', fontWeight: 900, color: '#0d2080', lineHeight: 1.2 }}>
                     Years
                   </div>
-                  <div style={{ fontSize: '11px', color: '#888', lineHeight: 1.2 }}>
+                  <div style={{ fontSize: '10px', color: '#888', lineHeight: 1.2 }}>
                     Manufacturing
                   </div>
                 </div>
@@ -217,23 +219,24 @@ export default function HeroSection() {
                 transition={{ delay: 1.35, type: 'spring', stiffness: 220 }}
                 className="absolute bg-white rounded-xl shadow-2xl flex items-center z-20"
                 style={{
-                  bottom: '88px',
-                  right: '0px',
-                  gap: '12px',
-                  padding: '10px 18px',
+                  bottom: '60px',
+                  right: '4px',
+                  gap: '8px',
+                  padding: '7px 12px',
+                  maxWidth: '48%',
                 }}
               >
                 <div
                   className="flex-shrink-0 flex items-center justify-center rounded-full text-white font-black"
-                  style={{ width: '44px', height: '44px', fontSize: '18px', background: '#0d2080' }}
+                  style={{ width: '36px', height: '36px', minWidth: '36px', fontSize: '16px', background: '#0d2080' }}
                 >
                   ✓
                 </div>
                 <div>
-                  <div style={{ fontSize: '13px', fontWeight: 900, color: '#0d2080', lineHeight: 1.2 }}>
+                  <div style={{ fontSize: '12px', fontWeight: 900, color: '#0d2080', lineHeight: 1.2 }}>
                     ISO Quality
                   </div>
-                  <div style={{ fontSize: '11px', color: '#888', lineHeight: 1.2 }}>
+                  <div style={{ fontSize: '10px', color: '#888', lineHeight: 1.2 }}>
                     Assured Products
                   </div>
                 </div>
