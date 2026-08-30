@@ -29,42 +29,41 @@ export async function POST(req: NextRequest) {
 
     const formId = body.formId ?? FORM_ID_MAIN;
 
-    // Field names EXACTLY as shown in WP CF7 Mail tab:
-    // [your-name] [your-company] [your-phone] [your-email] [product-type] [quantity] [your-requirement]
+    // CF7 REST API requires multipart/form-data — use FormData
     const fd = new FormData();
     fd.append('your-name',        body.name.trim());
     fd.append('your-company',     body.company?.trim() ?? '');
     fd.append('your-phone',       body.phone.trim());
     fd.append('your-email',       body.email?.trim() ?? '');
     fd.append('product-type',     body.product?.trim() ?? '');
-
-    // CF7 quantity field is type="number" — extract numeric value from strings like "1 Ton", "50 Ton"
-    const rawQty = body.quantity?.trim() ?? '';
-    const numericQty = rawQty ? (rawQty.match(/\d+/)?.[0] ?? '1') : '';
-    fd.append('quantity', numericQty);
+    // Send quantity as the full human-readable label (CF7 text field, not number)
+    fd.append('quantity',         body.quantity?.trim() ?? '');
     fd.append('your-requirement', body.message.trim());
-
-    // Required CF7 unit tag
-    fd.append('_wpcf7_unit_tag', `wpcf7-f${formId}-p0-o1`);
+    // CF7 unit tag — p1 is a safe generic value; p0 causes validation failures on some CF7 builds
+    fd.append('_wpcf7_unit_tag',  `wpcf7-f${formId}-p1-o1`);
 
     const cf7Url = `${WP_BASE}/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`;
 
     const cf7Res = await fetch(cf7Url, {
       method: 'POST',
       body: fd,
+      // Do NOT set Content-Type manually — fetch sets it with the correct multipart boundary
     });
 
-    const cf7Data = await cf7Res.json() as { status: string; message: string };
+    const cf7Data = await cf7Res.json() as { status: string; message: string; invalid_fields?: { field: string; message: string }[] };
 
-    // mail_sent_but_failed = form data is valid, email failed due to server mail config
+    // mail_sent_but_failed = form data valid, email failed (server mail config) — treat as success
     if (cf7Data.status === 'mail_sent' || cf7Data.status === 'mail_sent_but_failed') {
       return NextResponse.json({ ok: true, message: cf7Data.message });
     }
 
     // Log the actual CF7 error for debugging
     console.error('[CF7] submission failed:', JSON.stringify(cf7Data));
+
+    // Surface CF7 invalid field details if available
+    const detail = cf7Data.invalid_fields?.map(f => `${f.field}: ${f.message}`).join('; ');
     return NextResponse.json(
-      { ok: false, message: cf7Data.message || 'Submission failed. Please try again.' },
+      { ok: false, message: detail || cf7Data.message || 'Submission failed. Please try again.' },
       { status: 422 }
     );
 
