@@ -51,8 +51,8 @@ function YouTubeIcon() {
 
 const socials = [
   { label: 'Facebook',  href: 'https://facebook.com',  Icon: FacebookIcon,  hoverColor: '#1877f2' },
-  { label: 'Instagram', href: 'https://instagram.com', Icon: InstagramIcon, hoverColor: '#e1306c' },
-  { label: 'YouTube',   href: 'https://youtube.com',   Icon: YouTubeIcon,   hoverColor: '#ff0000' },
+  { label: 'Instagram', href: 'https://www.instagram.com/fabpapertube?igsi=dGJ1N3F3dmE3ZGVi', Icon: InstagramIcon, hoverColor: '#e1306c' },
+  { label: 'YouTube',   href: 'https://youtube.com/@fabpapertube?si=8PbHg01JcujbTdSU',   Icon: YouTubeIcon,   hoverColor: '#ff0000' },
 ];
 
 export default function Footer() {

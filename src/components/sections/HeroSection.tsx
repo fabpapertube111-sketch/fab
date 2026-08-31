@@ -42,8 +42,8 @@ export default function HeroSection() {
 
       {/* Main content */}
       <div
-        className="container-custom relative z-10 flex items-center"
-        style={{ minHeight: '100vh', paddingTop: '110px' }}
+        className="container-custom relative z-10 flex items-center justify-center"
+        style={{ minHeight: '100vh', paddingTop: '80px' }}
       >
         <div className="grid lg:grid-cols-2 gap-8 items-center w-full py-16">
 
@@ -52,21 +52,21 @@ export default function HeroSection() {
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex flex-col max-w-xl text-center lg:text-left items-center lg:items-start"
-            style={{ gap: '20px' }}
+            className="flex flex-col text-center lg:text-left items-center lg:items-start mx-auto lg:mx-0 w-full"
+            style={{ gap: '20px', maxWidth: '600px' }}
           >
             {/* H1 — "FAB Paper Tube." white + rest sky-blue, no forced breaks */}
             <motion.h1
               variants={heroHeading}
-              className="font-black leading-tight tracking-tight"
-              style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)' }}
+              className="font-black leading-tight tracking-tight w-full"
+              style={{ fontSize: 'clamp(2rem, 4.5vw, 3.6rem)' }}
             >
               <span style={{ color: '#ffffff' }}>FAB Paper Tube. </span>
               <span style={{ color: '#4db8ff' }}>Premium and Sustainable Packaging Solutions</span>
             </motion.h1>
 
-            {/* Blue underline bar — matches screenshot */}
-            <motion.div variants={heroSubheading}>
+            {/* Blue underline bar */}
+            <motion.div variants={heroSubheading} className="flex justify-center lg:justify-start w-full">
               <span
                 style={{
                   display: 'block',
@@ -84,7 +84,7 @@ export default function HeroSection() {
               style={{
                 color: '#ffffff',
                 fontWeight: 700,
-                fontSize: '17px',
+                fontSize: 'clamp(14px, 2.5vw, 17px)',
                 lineHeight: '1.55',
               }}
             >
@@ -97,7 +97,7 @@ export default function HeroSection() {
               variants={heroSubheading}
               style={{
                 color: 'rgba(215,230,255,0.92)',
-                fontSize: '16px',
+                fontSize: 'clamp(14px, 2vw, 16px)',
                 lineHeight: '1.72',
               }}
             >
@@ -144,13 +144,13 @@ export default function HeroSection() {
             variants={heroImage}
             initial="hidden"
             animate="visible"
-            className="relative flex items-center justify-center lg:justify-end overflow-hidden"
+            className="flex items-center justify-center lg:justify-end"
           >
             <motion.div
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
               className="relative w-full"
-              style={{ maxWidth: '540px' }}
+              style={{ maxWidth: '480px' }}
             >
               {/* Glow */}
               <div
