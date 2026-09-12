@@ -138,7 +138,7 @@ export default function ContactPageClient() {
         setErrors({ message: data.message || 'Submission failed. Please try again.' });
       }
     } catch {
-      setErrors({ message: 'Network error. Please check your connection and try again.' });
+      setErrors({ message: 'Network error. Please email us directly at fabpapertube111@gmail.com' });
     } finally {
       setLoading(false);
     }
