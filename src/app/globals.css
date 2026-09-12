@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* ─── Custom cursor — hide native cursor on desktop, restore on touch ───────── */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
 /* ─── FAB Paper Tube Design System ──────────────────────────────────────────── */
 :root {
   /* Brand Colors */
