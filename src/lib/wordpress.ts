@@ -1,4 +1,5 @@
 import type { WPPost, WPMedia, Product, WPImage, Testimonial, CompanySettings } from '@/types';
+import { STATIC_PRODUCTS } from './products-data';
 
 const WP_API_URL =
   process.env.WORDPRESS_API_URL ||
@@ -132,36 +133,15 @@ function parseProduct(post: WPPost): Product {
 
 // ─── Products API ─────────────────────────────────────────────────────────────
 export async function getAllProducts(): Promise<Product[]> {
-  try {
-    const posts = await wpFetch<WPPost[]>(
-      '/products?_embed&per_page=100&status=publish&orderby=menu_order&order=asc'
-    );
-    if (!Array.isArray(posts) || posts.length === 0) return getFallbackProducts();
-    return posts
-      .map(parseProduct)
-      .sort((a, b) => (a.productOrder ?? 999) - (b.productOrder ?? 999));
-  } catch (err) {
-    console.error('[WP] getAllProducts failed:', err);
-    return getFallbackProducts();
-  }
+  return STATIC_PRODUCTS;
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  try {
-    const posts = await wpFetch<WPPost[]>(
-      `/products?slug=${slug}&_embed&status=publish`
-    );
-    if (!Array.isArray(posts) || posts.length === 0) return null;
-    return parseProduct(posts[0]);
-  } catch (err) {
-    console.error('[WP] getProductBySlug failed:', err);
-    return getFallbackProducts().find(p => p.slug === slug) ?? null;
-  }
+  return STATIC_PRODUCTS.find(p => p.slug === slug) ?? null;
 }
 
 export async function getRelatedProducts(currentSlug: string, limit = 4): Promise<Product[]> {
-  const all = await getAllProducts();
-  return all.filter(p => p.slug !== currentSlug).slice(0, limit);
+  return STATIC_PRODUCTS.filter(p => p.slug !== currentSlug).slice(0, limit);
 }
 
 // ─── Testimonials ─────────────────────────────────────────────────────────────
@@ -212,44 +192,7 @@ export async function getCompanySettings(): Promise<CompanySettings> {
 
 // ─── Fallback Data (only used if WordPress is unreachable) ────────────────────
 export function getFallbackProducts(): Product[] {
-  return [
-    {
-      id: 1, slug: 'white-sewing-thread-paper-tube',
-      title: 'White Sewing Thread Paper Tube',
-      shortDescription: 'Strong paper tubes specially made for sewing thread winding. Designed for smooth winding, good strength and reliable support.',
-      description: '<p>Strong paper tubes specially made for sewing thread winding. Designed for smooth winding, good strength and reliable support. Manufactured with precision to ensure consistent quality and reliable performance in textile and thread winding applications.</p>',
-      featuredImage: null, gallery: [],
-      usedFor: ['Sewing Thread Winding'],
-      applications: ['Textile Industry', 'Thread & Yarn Winding'],
-      specifications: [
-        { label: 'Thickness', value: '1.20 mm – 1.5 mm' },
-        { label: 'Diameter', value: '9.5 mm' },
-        { label: 'Length', value: '63 mm' },
-        { label: 'Size', value: 'As per Requirement' },
-        { label: 'Weight', value: '2.4 Gram' },
-        { label: 'Usage / Application', value: 'Sewing Thread Winding' },
-      ],
-      seoTitle: 'White Sewing Thread Paper Tube | FAB Paper Tube',
-      seoDescription: 'Premium white sewing thread paper tubes. Thickness 1.20–1.5mm, Diameter 9.5mm, Length 63mm, Weight 2.4g. Manufactured by FAB Paper Tube, Gujarat.', acf: {}, productOrder: 1,
-      thickness: '1.20 mm – 1.5 mm',
-      diameter: '9.5 mm',
-      length: '63 mm',
-      size: 'As per Requirement',
-      weight: '2.4 Gram',
-      usage: 'Sewing Thread Winding',
-    },
-    {
-      id: 2, slug: 'brown-notebook-cover-paper-tube',
-      title: 'Brown Notebook Cover Paper Tube',
-      shortDescription: 'Durable paper tubes for notebook cover rolls.',
-      description: '<p>Brown kraft paper tubes for notebook cover roll winding.</p>',
-      featuredImage: null, gallery: [], usedFor: ['Notebook Cover Roll Winding'],
-      applications: ['Stationery Industry'],
-      specifications: [{ label: 'Usage / Application', value: 'Notebook Cover Roll Winding' }],
-      seoTitle: 'Brown Notebook Cover Paper Tube | FAB Paper Tube',
-      seoDescription: 'Heavy-duty brown paper tubes.', acf: {}, productOrder: 2,
-    },
-  ];
+  return STATIC_PRODUCTS;
 }
 
 function getFallbackTestimonials(): Testimonial[] {
