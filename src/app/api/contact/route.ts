@@ -2,21 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 // ─── Config ────────────────────────────────────────────────────────────────────
-// Set these in your .env.local (or Vercel environment variables):
-//
-//   SMTP_HOST      e.g. smtp.gmail.com
-//   SMTP_PORT      e.g. 465
-//   SMTP_USER      e.g. fabpapertube111@gmail.com
-//   SMTP_PASS      Gmail App Password (NOT your Gmail login password)
-//   CONTACT_TO     e.g. fabpapertube111@gmail.com  (where to receive enquiries)
-//
-// Gmail setup: Google Account → Security → 2-Step Verification ON
-//              → App Passwords → create one → paste here as SMTP_PASS
+// Falls back to hardcoded values if env variables are not set.
+// For production, set these in Vercel → Settings → Environment Variables.
 
 const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '465', 10);
-const SMTP_USER = process.env.SMTP_USER || '';
-const SMTP_PASS = process.env.SMTP_PASS || '';
+const SMTP_USER = process.env.SMTP_USER || 'fabpapertube111@gmail.com';
+const SMTP_PASS = process.env.SMTP_PASS || 'bdfhzdgcsvlomfdg';
 const CONTACT_TO = process.env.CONTACT_TO || 'fabpapertube111@gmail.com';
 
 export async function POST(req: NextRequest) {
@@ -40,15 +32,6 @@ export async function POST(req: NextRequest) {
     }
     if (!body.message?.trim()) {
       return NextResponse.json({ ok: false, message: 'Message / requirement is required.' }, { status: 400 });
-    }
-
-    // ── Check SMTP credentials are configured ───────────────────────────────
-    if (!SMTP_USER || !SMTP_PASS) {
-      console.error('[contact] SMTP_USER or SMTP_PASS env variables not set.');
-      return NextResponse.json(
-        { ok: false, message: 'Email service not configured. Please contact us directly at fabpapertube111@gmail.com' },
-        { status: 503 }
-      );
     }
 
     // ── Create transporter ──────────────────────────────────────────────────
